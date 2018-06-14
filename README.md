@@ -56,3 +56,5 @@ Referencias:
 [Tran Duc Thang](https://github.com/wataridori/solid-php-example)
 
 [devexperto.com](https://devexperto.com/principio-responsabilidad-unica/)
+
+[javiergarzas.com](http://www.javiergarzas.com/2016/11/s-o-l-i-d-principles-los-necesitamos-testear-bien-parte-12.html)

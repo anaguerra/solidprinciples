@@ -8,15 +8,12 @@ Dado por hecho que el software requiere cambios (diariamente) y que unas entidad
 las modificaciones en el código de una de ellas puede generar indeseables efectos colaterales en cascada en todo el 
 software.o. Es decir, el diseño debe ser abierto para poderse extender pero cerrado para poderse modificar.
 
-Seguir este principio favorece un diseño que permite escalar la aplicación y extender la funcionalidad del software sin 
-afectar a otros módulos de este.
+Para seguir este principio se utiliza la **abstración**.
 
-El principio Open/Closed se suele resolver utilizando polimorfismo y herencia. En vez de obligar a la clase principal a saber 
-cómo realizar una operación, delega esta a los objetos que utiliza, de tal forma que no necesita saber explícitamente 
-cómo llevarla a cabo.
-
-Este principio quiere decir que una clase debería ser fácilmente extendible sin modificar la propia clase. 
-
+Respecto al Testing, si para añadir código nuevo, hay que alterar el código que ya ha pasado el Testing Unitario, 
+estamos en una mala práctica. A parte de pasar el Testing Unitario al código nuevo, tenemos que volver a lanzar 
+las pruebas (lo que llamamos pruebas de regresión) y no deberán de fallar. De esta forma será más robusto porque 
+no estamos cambiando el código ya probado.
 
 Vamos a ver ahora el método sum de la clase AreaCalculator:
 
