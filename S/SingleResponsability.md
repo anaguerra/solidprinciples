@@ -1,5 +1,5 @@
 S — Single Responsability Principle
-------------------------------------
+===================================
 
 **Introducción conceptual**
 
