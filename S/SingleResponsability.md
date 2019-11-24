@@ -1,141 +1,193 @@
 S — Single Responsability Principle
 ------------------------------------
 
-Principio de única responsabilidad
+**Introducción conceptual**
 
-Cada clase debe ocuparse de una sola responsabilidad, o dicho de otra manera: Cada clase debería tener una única razón para 
-ser modificada. Si identificas que alguna de tus clases están desempeñando más de una responsabilidad, 
-deberías partirla en n clases, una por cada responsabilidad. 
+Concepto:
+- Una clase = Un concepto y responsabilidad
+- Una clase debería tener sólo 1 razón para cambiar
 
+Cómo conseguirlo:
+- Clases pequeñas con objetivos acotados
 
-En muchas ocasiones estamos tentados a poner un método reutilizable que no tienen nada que ver con la clase 
-simplemente porque lo utiliza y nos pilla más a mano. En ese momento pensamos "Ya que estamos aquí, para que 
-voy a crear una clase para realizar esto. Directamente lo pongo aquí".
+Finalidad:
+- Alta cohesión y robustez
+- Permitir composición de clases (inyectar colaboradores)
+- Evitar duplicidad de código
 
-El problema surge cuando tenemos la necesidad de utilizar ese mismo método desde otra clase. 
-Si no se refactoriza en ese momento y se crea una clase destinada para la finalidad del método, 
-nos toparemos a largo plazo con que las clases realizan tareas que no deberían ser de su responsabilidad.
-
-Es uno de los principios más fáciles de entender y uno de los menos cumplidos :D
-Está relacionado con los conceptos de Cohesión y SoC (separación de responsabilidades)
-
-"El propósito de las clases es organizar el código de tal manera que se minimize la complejidad
-Por lo tanto las clases deben ser":
-
-* Lo suficientemente pequeñas para minimizar el **acoplamiento**
-* Lo suficientemente grandes para maximizar la **cohesión**
+    
+    
+    Nota: MODELO DE DOMINIO: Aquella clase que representa un concepto de nuestro contexto: un usuario, un producto, un carrito 
+    de la compra...
 
 
+Una forma rápida de saber si estamos respetando el SRP es ir a nuestra capa de servicios y mirar si tienen 
+más de un método público. Esto implica dos puntos de entrada a esa clase, por tanto hace dos cosas diferentes.
+También se ve cuando tienen nombres muy abstractos. P.e. se llama EmailService en vez de llamarse EnviadorDeEmails.
+EmailService se encarga de enviar emails y de más cosas, o sea tiene varios métodos públicos
 
 
+**Alta cohesión y robustez**
+
+Alta cohesión: que las cosas relacionadas entre ellas estén más juntitas. P.e., en el caso de un usuario el método que comprueba si 
+es su cumpleaños estará en User (modelo de dominio). Escondemos los detalles de implementación.
+
+Robustez: más tolerante al cambio, se pueden reemplear las cosas
+
+**Permitir composición de clases**
+
+En lugar de tener 1 clase con 5 métodos, puedes tener una clase a la cual se le inyectan 5 clases. 
+Y si se quiere reusar alguna de estas internas (p.e. EnviadorEmails y PonerEnBlacklistEmail) en más de un caso de uso, se inyectan 
+en cualquier otro sitio.
+
+El SRP nos abre la puerta a implementar la inyección de dependencias, inversión de dependencias, etc. PAra llegar a ese punto  es
+necesario que nuestras clases sean acotaditas.
+
+**Evitar duplicidad de código**
+La composición evita la necesidad de copiar y pegar.
+
+Niveles de granularidad
+---
+SRP deja mucho lugar a la interpretación así que necesitamos criterios para decidir si lo estamos respetando y hasta qué nivel.
 
 
-**Ejemplo 1**
+- Order | User: Tenemos que discernir en qué tipo de elemento estamos (modelo de dominio o servicios). 
+En este caso son modelos de dominio, no servicios. Vídeo sobre modelos de dominio anémicos y principio de diseño Tell don’t ask: https://www.youtube.com/watch?v=Be-ULOIGAZk
 
-Ejemplo típico de separación entre la gestión del estado de un objeto y su representación
+- OrderAnalyzer | OrderProcessor (también OrderManager, OrderService...). Los términos genéricos llevan a más de 1 responsabilidad. Podemos meter cualquier lógica relacionada
+con los pedidos sin caer en que no estamos respetando el SRP. 
+
+- OrderTrustabilityChecker | OrderMarginCalculator. Son más específicos, no abren la puerta a añadir más funcionalidad. Más explícitos (esto relacionado con Clean Code)
+
+- Ejemplo: Conexión a base de datos representada en una clase aislada de la clase que obtiene los usuarios o vídeos. P.e. Repository
 
 
-Tenemos varias figuras de las que después queremos calcular su área total:
+Modelo de dominio Book:
 
-    Class Circle 
+```php
+final class Book
+{
+    public String getTitle()
     {
-        public $radius;
-    
-        public function __construct($radius) 
-        {
-            $this->radius = $radius;
-        }
+        return "A great book";
     }
-
-    Class Square 
+    public String getAuthor()
     {
-        public $length;
-    
-        public function __construct($length) 
-        {
-            $this->length = $length;
-        }
+        return "John Doe";
     }
-Primero creamos las clases de las figuras y dejamos que los constructores se encarguen de recibir las medidas necesarias.
+    public void printCurrentPage()
+    { 
+        System.out.println("current page content");
+    }
+```
 
-Ahora creamos la clase **AreaCalculator**, que recibe un array con los objetos de cada una de las figuras para ser sumadas:
+Servicio cliente del modelo de dominio:
 
-    class AreaCalculator
+```php
+final class Client
+{
+    public Client() {
+        Book book = new Book(…);
+        book.printCurrentPage();
+    }
+}
+```
+
+⚠️ Motivo del por qué no respetamos SRP: Book está acoplada al canal estándar de salida al imprimir la página actual. 
+Sabe cómo modelar los datos y cómo imprimirlos.
+
+Está acoplado el mecanismo de entrega de los datos al modelado de los datos.
+
+
+**Refactor respetando SRP**
+
+Ahora lo que hacemos en getCurrentPage es devolver el txto, y ya vendrá otra clase cuyo propósito es imprimir.
+
+Clase Book:
+
+```php
+final class Book
+{
+    public String getTitle()
     {
-        protected $shapes;
-    
-        public function __construct($shapes = array())
-        {
-            $this->shapes = $shapes;
-        }
-    
-        public function sum()
-        {
-            // Aquí va la lógica para sumar todas las áreas
-        }
-    
-        public function output()
-        {
-            return implode('', array(
-                "<h1>",
-                    "Suma de todas las áreas: ",
-                    $this->sum(),
-                "</h1>"
-            ));
-        }
+        return "A great book";
     }
-    
-Para utilizar la clase AreaCalculator simplemente instanciamos la clase y le pasamos un array con las figuras, 
-mostrando el output al final:
+    public String getAuthor()
+    {
+        return "John Doe";
+    }
+    public String getCurrentPage()
+    {
+        return "current page content";
+    }
+}
+```
 
-    $shapes = array (
-        new Circle(3),
-        new Square(4)
-    );
+Implementación de la impresora:
 
-    $areas = new AreaCalculator($shapes);
-    
-    echo $areas->output();
-    
-El problema del método output es que la clase AreaCalculator además de calcular las áreas maneja la lógica de la salida 
-de los datos. El problema surge cuando queremos mostrar los datos en otros formatos como json, por ejemplo.
+```php
+final class StandardOutputPrinter
+{
+    public void printPage(String page)
+    {
+        System.out.println(page);
+    }
+}
+```
 
-El principio Single responsibility determinaría en este caso que AreaCalculator sólo calculase el área, y que la 
-funcionalidad de la salida de los datos de produjera en otra entidad. Para ello podemos crear la clase SumCalculatorOutputter, que determinará como mostraremos los datos de las figuras. Con esta clase el código quedaría así:
+Servicio cliente:
 
-    $shapes = array (
-        new Circle(3),
-        new Square(4)
-    );
-    
-    $areas = new AreaCalculator($shapes);
-    $output = new SumCalculatorOutputter($areas);
-    
-    echo $output->toJson();
-    echo $output->toHtml();
-
-
-
-
-
-
-**Ejemplo 2**
-
-
-[srp_violation.php](srp_violation.php)
-
-[srp.php](srp.php)
+```php
+final class Client
+{
+    public Client() {
+        Book book = new Book(…);
+        String currentPage = book.getCurrentPage();
+        StandardOutputPrinter printer = new StandardOutputPrinter();
+        printer.printPage(currentPage);
+    }
+}
+```
 
 
+**¿Esto a dónde nos lleva? Modularidad: más de una implementación**
+
+Modularización: Ahora podemos extraer a una interfaz el pintar.
+
+Interface Printer:
+
+```php
+interface Printer
+{
+    public void printPage(String page);
+}
+```
+Con el `void` sabemos que no estamos devolviendo nada, estamos generando un side effect. 
 
 
+Impresora por el canal estándar de salida:
 
+```php
+final class StandardOutputPrinter implements Printer
+{
+    public void printPage(String page)
+    {
+        System.out.println(page);
+    }
+}
+```
 
+Impresora por el canal estándar de salida pero en HTML:
 
-
-
-
-
+```php
+final class StandardOutputHtmlPrinter implements Printer
+{
+    public void printPage(String page)
+    {
+        System.out.println("<div>" + page + "</div>");
+    }
+}
+```
 
 
 
