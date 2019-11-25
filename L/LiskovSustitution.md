@@ -57,7 +57,7 @@ class SumCalculatorOutputter {
 
         return json_encode($data);
     }
-
+    
     public function toHtml()
     {
         return implode('', array(
@@ -68,3 +68,29 @@ class SumCalculatorOutputter {
         ));
     }
 }
+
+
+**Concepto**
+
+- Si S es un subtipo de T, instancias de T deberían poderse sustituir por instancias de S sin alterar las propiedades del programa.
+
+P.e.: RepositorioUsarioMysql es un subtipo de RepositorioUsario. Instancias de RepositorioUsario deberían poderse sustituirse por RepositorioUsarioMysql
+sin alterar las propiedades del programa.
+
+Si tienes una jerarquía (subtipos), en cualquier momento dado podría reemplazar los tipos y todo debería seguir funcionando como se espera. 
+Cuando tenemos una jerarquía es porque estamos estableciendo un contrato en el padre. Si seguimos Liskov, si garantizamos que en el hijo
+se cumple ese contrato, podemos ampliar ese padre, reemplazarlo por cualquier otro hijo y todo seguirá funcionando guay (podemos aplicar OCP).
+
+SRP para clases pequeñas y acotadas de responsabilidad y LSP son la premisa para poder aplicar OCP: que nuestras clases sean pequeñas y que haya
+un contrato robusto que se mantenga a lo largo de la jerarquía.
+
+
+**Cómo**
+
+- El comportamiento de subclases debe respetar el contrato de la superclase.
+
+**Finalidad**
+
+- Mantener correctitud para poder aplicar OCP.
+
+
