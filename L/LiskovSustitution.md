@@ -5,7 +5,7 @@ El principio de Sustitución Liskov fue definido por Barbara Liskov.
 Básicamente este principio nos dice que si en nuestro código estamos usando una clase, y esta clase es extendida, 
 tenemos que poder utilizar cualquiera de las clases hijas y que el programa siga siendo válido. 
 
-Esto nos obliga a asegurarnos de que cuando extendemos una clase no estamos alterando el comportamiento de la padre.
+    Esto nos obliga a asegurarnos de que cuando extendemos una clase no estamos alterando el comportamiento de la padre.
 
 
 **¿Cómo detectar que estamos violando el principio de sustitución de Liskov?**
@@ -13,8 +13,10 @@ Esto nos obliga a asegurarnos de que cuando extendemos una clase no estamos alte
 Seguro que te has encontrado con esta situación muchas veces: creas una clase que extiende de otra, 
 pero de repente uno de los métodos te sobra, y no sabes que hacer con él. Las opciones más rápidas son 
 bien dejarlo vacío, bien lanzar una excepción cuando se use, asegurándote de que nadie llama incorrectamente a 
-un método que no se puede utilizar. Si un método sobrescrito no hace nada o lanza una excepción, es muy probable que
- estés violando el principio de sustitución de Liskov. Si tu código estaba usando un método que para algunas 
+un método que no se puede utilizar. 
+
+*Si un método sobrescrito no hace nada o lanza una excepción, es muy probable que
+ estés violando el principio de sustitución de Liskov*. Si tu código estaba usando un método que para algunas 
  concreciones ahora lanza una excepción, ¿cómo puedes estar seguro de que todo sigue funcionando?
  
 
@@ -72,6 +74,7 @@ class SumCalculatorOutputter {
     }
 }
 ```
+
 
 **Concepto**
 

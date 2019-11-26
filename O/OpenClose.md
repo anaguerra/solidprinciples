@@ -22,6 +22,12 @@ Todos los empleados tengan algo en común, p.e. TipoEmpleado a lo que se pueda a
 "calcúlame el sueldo" y cada subtipo o cada implementación de la interface tendría la implementación. De forma que si añadimos
 un nuevo tipo de empleado simplemente implementamos esa interfaz.
 
+    
+    El principio Open/Closed se suele resolver utilizando polimorfismo. 
+    En vez de obligar a la clase principal a saber cómo realizar una operación, delega esta a los objetos que utiliza, 
+    de tal forma que no necesita saber explícitamente cómo llevarla a cabo. Estos objetos tendrán una interfaz común 
+    que implementarán de forma específica según sus requerimientos.
+
 Finalidad:
 - Facilidad para añadir nuevos Casos de uso en nuestra aplicación.
 - Código más fácil de entender
@@ -238,3 +244,6 @@ más para el evento.
 Os recordamos que podéis profundizar mucho más en estos aspectos en los cursos de Arquitectura Hexagonal, 
 CQRS: Command Query Responsibility Segregation y Comunicación entre microservicios: Event-Driven Architecture
  donde nos detenemos con más detalle.
+ 
+ 
+ Más: https://devexperto.com/principio-open-closed/
