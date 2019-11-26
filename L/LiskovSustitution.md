@@ -17,11 +17,11 @@ un método que no se puede utilizar. Si un método sobrescrito no hace nada o la
  estés violando el principio de sustitución de Liskov. Si tu código estaba usando un método que para algunas 
  concreciones ahora lanza una excepción, ¿cómo puedes estar seguro de que todo sigue funcionando?
  
- 
- 
+
 Continuando con la clase AreaCalculator, ahora tenemos una clase VolumeCalculator que extiende la clase AreaCalculator:
 
 
+```php
 class VolumeCalculator extends AreaCalculator
 {
     public function __construct($shapes = array())
@@ -36,10 +36,13 @@ class VolumeCalculator extends AreaCalculator
         return $summedData;
     }
 }
+```
+
 VolumeCalculator se podría sustituir por AreaCalculator.
 
 La clase SumCalculatorOutputter quedará:
 
+```php
 class SumCalculatorOutputter {
 
     protected $calculator;
@@ -68,7 +71,7 @@ class SumCalculatorOutputter {
         ));
     }
 }
-
+```
 
 **Concepto**
 
@@ -93,4 +96,4 @@ un contrato robusto que se mantenga a lo largo de la jerarquía.
 
 - Mantener correctitud para poder aplicar OCP.
 
-
+    
