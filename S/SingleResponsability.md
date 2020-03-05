@@ -15,11 +15,9 @@ Finalidad:
 - Permitir composición de clases (inyectar colaboradores)
 - Evitar duplicidad de código
 
-    
-    
+
     Nota: MODELO DE DOMINIO: Aquella clase que representa un concepto de nuestro contexto: un usuario, un producto, un carrito 
     de la compra...
-
 
 Una forma rápida de saber si estamos respetando el SRP es ir a nuestra capa de servicios y mirar si tienen 
 más de un método público. Esto implica dos puntos de entrada a esa clase, por tanto hace dos cosas diferentes.
