@@ -5,7 +5,14 @@ SOLID es un acrónimo inventado por Robert C.Martin para establecer los cinco pr
 y diseño. Este acrónimo tiene bastante relación con los patrones de diseño, en especial, con la alta cohesión y el bajo acoplamiento.
 
 
-Los 5 principios básicos de la programación orientada a objetos, según Robert C.Martin
+**¿Qué son los principios SOLID?**
+
+- Principios o convenciones de diseño de Software
+- Ampliamente aceptados en la industria
+- Ayudan a hacer un código más mantenible y tolerante a cambios
+- Aplicables en términos de diseño de clases (micro-diseño), y también a nivel de arquitectura de software y estructura de [micro]servicios (macro-diseño)
+- Tenemos que romper con el rol de “Arquitecto de software”. Entender el diseño de software de calidad como una habilidad y no un rol
+
 
 
 S — Single Responsability Principle
@@ -15,6 +22,7 @@ Principio de única responsabilidad
 
 
 [S/SingleResponsability](S/SingleResponsability.md)
+[Más sobre SRP](S/bis/SingleResponsability_bis.md)
 
 
 

@@ -16,8 +16,11 @@ Finalidad:
 - Evitar duplicidad de código
 
 
-    Nota: MODELO DE DOMINIO: Aquella clase que representa un concepto de nuestro contexto: un usuario, un producto, un carrito 
-    de la compra...
+    Nota: MODELO DE DOMINIO: clases que representan conceptos de nuestro contexto: un usuario, un producto, un carrito 
+    de la compra... nos sirven para definir y agrupar sus atributos y su comportamiento asociado. 
+    P.e. fecha de nacimiento (el método que comprueba si es el cumpleaños debe estar en el model) 
+    Modelo ánemicos: sólo hacen de cajas de atritutos (DTO).
+    Esto se aborda en el curso de Arquitectura Hexagonal
 
 Una forma rápida de saber si estamos respetando el SRP es ir a nuestra capa de servicios y mirar si tienen 
 más de un método público. Esto implica dos puntos de entrada a esa clase, por tanto hace dos cosas diferentes.

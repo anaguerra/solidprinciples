@@ -26,10 +26,6 @@ Por lo tanto las clases deben ser":
 * Lo suficientemente grandes para maximizar la **cohesión**
 
 
-
-
-
-
 **Ejemplo 1**
 
 Ejemplo típico de separación entre la gestión del estado de un objeto y su representación
@@ -121,7 +117,7 @@ funcionalidad de la salida de los datos de produjera en otra entidad. Para ello 
 
 [srp_violation.php](srp_violation.php)
 
-[srp.php](srp.php)
+[srp.php](srp_good.php)
 
 
 
