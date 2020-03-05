@@ -22,6 +22,7 @@ Principio de única responsabilidad
 
 
 [S/SingleResponsability](S/SingleResponsability.md)
+
 [Más sobre SRP](S/bis/SingleResponsability_bis.md)
 
 

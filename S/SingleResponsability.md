@@ -53,7 +53,8 @@ SRP deja mucho lugar a la interpretación así que necesitamos criterios para de
 
 
 - Order | User: Tenemos que discernir en qué tipo de elemento estamos (modelo de dominio o servicios). 
-En este caso son modelos de dominio, no servicios. Vídeo sobre modelos de dominio anémicos y principio de diseño Tell don’t ask: https://www.youtube.com/watch?v=Be-ULOIGAZk
+En este caso son modelos de dominio, no servicios. [Vídeo](https://www.youtube.com/watch?v=Be-ULOIGAZk) sobre modelos de dominio anémicos y principio de diseño *"Tell don’t ask"*. 
+https://www.youtube.com/watch?v=Be-ULOIGAZk
 
 - OrderAnalyzer | OrderProcessor (también OrderManager, OrderService...). Los términos genéricos llevan a más de 1 responsabilidad. Podemos meter cualquier lógica relacionada
 con los pedidos sin caer en que no estamos respetando el SRP. 
