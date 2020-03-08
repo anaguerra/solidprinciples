@@ -50,19 +50,19 @@ La composición evita la necesidad de copiar y pegar.
 Niveles de granularidad
 ---
 SRP deja mucho lugar a la interpretación así que necesitamos criterios para decidir si lo estamos respetando y hasta qué nivel.
+Tenemos que discernir en qué tipo de elemento estamos (modelo de dominio o servicios). 
 
-
-- Order | User: Tenemos que discernir en qué tipo de elemento estamos (modelo de dominio o servicios). 
-En este caso son modelos de dominio, no servicios. [Vídeo](https://www.youtube.com/watch?v=Be-ULOIGAZk) sobre modelos de dominio anémicos y principio de diseño *"Tell don’t ask"*. 
+- Order | User: En este caso son modelos de dominio, no servicios. [Vídeo](https://www.youtube.com/watch?v=Be-ULOIGAZk) sobre modelos de dominio anémicos y principio de diseño *"Tell don’t ask"*. 
 https://www.youtube.com/watch?v=Be-ULOIGAZk
 
 - OrderAnalyzer | OrderProcessor (también OrderManager, OrderService...). Los términos genéricos llevan a más de 1 responsabilidad. Podemos meter cualquier lógica relacionada
 con los pedidos sin caer en que no estamos respetando el SRP. 
+¿Cómo lo solucionamos? Con nombres más específicos: OrderTrustabilityChecker | OrderMarginCalculator. Son más específicos, no abren la puerta a añadir más funcionalidad. Más explícitos (esto relacionado con Clean Code)
 
-- OrderTrustabilityChecker | OrderMarginCalculator. Son más específicos, no abren la puerta a añadir más funcionalidad. Más explícitos (esto relacionado con Clean Code)
+Ejemplo: Conexión a base de datos representada en una clase aislada de la clase que obtiene los usuarios o vídeos. P.e. Repository
 
-- Ejemplo: Conexión a base de datos representada en una clase aislada de la clase que obtiene los usuarios o vídeos. P.e. Repository
 
+**EJEMPLOS DE CÓDIGO**
 
 Modelo de dominio Book:
 

@@ -67,7 +67,7 @@ final class File {
 }
 ```
 
-**Siguiendo el Principio ODP 👍**
+**Soluciones siguiendo el Principio OCP 👍**
 
 1.  **A través de Interface ☝️**
 
@@ -79,7 +79,6 @@ interface Measurable {
   public Double getSentLength();
 }
 ```
-
 
 Clase Song implementando Measurable:
 
@@ -114,8 +113,7 @@ final class Progress {
 ```
 Finalmente, nuestra clase Progress realizará el cálculo en base a algo Measurable, por lo que se acopla únicamente a la interface.
 
-Vídeo sobre el principio de Diseño Tell don’t ask:
-Tell don’t ask
+[Vídeo](https://www.youtube.com/watch?v=Be-ULOIGAZk) sobre el principio de Diseño _Tell don’t ask_.
 
 2.- **A través de Abstract Class ✌️**
 
@@ -181,23 +179,28 @@ Interfaces 🆚 Abstract Class
 Conclusión
 
 **¿Cuándo usamos Interfaces?:** 
+
 Cuando vayamos a desacoplar entre capas
 
 **¿Cuándo usamos Abstract?:** 
+
 En determinados casos para Modelos de dominios. 
 P.e.: Candy Crush, donde se dan distintos tipos de bonus, y todos tienen el "dameQueTipoDeBonusSoy". 
 Se crea una clase abstracta y cada tipo de bonus hereda. Si se crea un nuevo tipo de bonus se crea la nueva clase
 
-Profundizamos más en estos aspectos en el curso de Arquitectura Hexagonal.
-
-Vamos al siguiente paso de la lección para ver cómo aplicar el OCP en un Ejemplo de El Mundo Real™️! 👇👇👇
+    REMINDER:
+    Las clases abstractas son clases que no se instancian y sólo pueden ser heredadas, trasladando así un funcionamiento 
+    obligatorio a clases hijas. Mejoran la calidad del código y ayudan a reducir la cantidad de código duplicado.
+    
+    Las clases abstractas pueden extenderse unas a otras, así como extender clases normales. Si se define un método abstracto 
+    dentro de una clase, ésta ha de ser abstracta también. Un método abstracto define una función pero no su implementación. 
+    Cuando una clase hereda de una abstracta, si ésta tiene un método abstracto, debe ser definido en la clase hija.
 
 [^1]: Patrón de diseño *Template Method*: Plantea que en la clase abstracta definiríamos un cuerpo de método que define 
 qué operación vamos a realizar, pero estaríamos llamando a unos métodos definidos como abstractos (delegando 
 la implementación a los hijos).
 
 ¡Pero cuidado! 👀 esto implica una pérdida de la trazabilidad de nuestro código.
-
 
 
 Keep it real 😎
@@ -208,7 +211,7 @@ Ahora que hemos ya hemos aprendido en qué consiste el principio de Abierto/Cerr
 continuamos con nuestro ejemplo de la clase VideoCreator.:
 
 Si nuestra clase VideoCreator inicialmente hacía una única tarea como guardar en BD, puede suceder que acabe convirtiéndose
-en una pieza mastodóntica de nuestra aplicación que realiza un montón de funciones, por lo que testearla se vuelve un 
+en una pieza mastod óntica de nuestra aplicación que realiza un montón de funciones, por lo que testearla se vuelve un 
 auténtico infierno🔥🔥.
  
 
