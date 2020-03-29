@@ -1,4 +1,4 @@
-O — Liskov Substitution Principle
+L — Liskov Substitution Principle
 --------------------------------
 
 El principio de Sustitución Liskov fue definido por Barbara Liskov. 

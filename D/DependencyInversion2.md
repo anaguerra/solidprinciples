@@ -300,6 +300,7 @@ final class UserSearcherShould {
 A nivel de Test ya vemos cómo podemos cambiar la implementación de UserRepository sin necesidad de tocar nuestro 
 UserSearcher, es decir, podemos pasarle como argumento cualquier clase que implemente la interface.
 
-Conclusión
+**Conclusión**
+
 Ahora el acoplamiento irá de nuestro caso de uso a la interface y las diferentes implementaciones se dirigirán 
 hacia nuestra interface, en lugar de acoplar acoplar nuestro caso de uso a la implementación.

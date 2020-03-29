@@ -1,4 +1,4 @@
-O — Liskov Substitution Principle
+L — Liskov Substitution Principle
 --------------------------------
 
 **Concepto**
